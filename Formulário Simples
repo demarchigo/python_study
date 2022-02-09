@@ -1,0 +1,52 @@
+# creating radio buttons
+import PySimpleGUI as pg
+import pandas as pd
+# set theme
+pg.theme('default1')
+# create layout
+layout = [
+    [
+        pg.Text('Enter Name: ', size=(10,1)),
+        pg.InputText(do_not_clear=False)
+    ],
+    [
+        pg.Text('Location: ', size=(10,1)),
+        pg.InputText(do_not_clear=False)
+    ],
+    [
+        pg.Text('Enter E-mail: ', size=(10,1)),
+        pg.InputText(do_not_clear=False)
+    ],
+    [
+        pg.Text('What is your computer brand? '),
+        pg.Radio('DELL', 'group1'),
+        pg.Radio('HP', 'group1')
+    ],
+    [
+        pg.Button('OK'),
+        pg.Button('Close')
+    ]
+]
+
+#Create Window
+window = pg.Window('Form', layout)
+while True:
+    event, values = window.read()
+    # process information after the event
+    print(event)
+    print(values)
+    if event == pg.WIN_CLOSED or event == 'Close':
+        break
+
+    elif event == 'OK':
+        print(f'Name: {values[0]}')
+        print(f'Location: {values[1]}')
+        print(f'E-mail: {values[2]}')
+        language = 'DELL'
+        if values[3] == True:
+            language = 'HP'
+        print(f'Favourite language: {language}')
+        
+#close the window
+window.close()
+exit()
